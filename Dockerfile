@@ -7,7 +7,12 @@ RUN apt-get -y update && \
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
     bash Miniconda3-latest-Linux-x86_64.sh -b -p /miniconda && \
     rm -f Miniconda3-latest-Linux-x86_64.sh
-
+    
+# Install quarto  (demander si c bien ça)
+ENV QUARTO_VERSION="0.9.287"
+RUN wget "https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.deb"
+RUN apt install "./quarto-${QUARTO_VERSION}-linux-amd64.deb"
+    
 # Make conda command available
 ENV PATH="/miniconda/bin:${PATH}"
 
